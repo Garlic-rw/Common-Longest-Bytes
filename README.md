@@ -1,5 +1,6 @@
 # Common-Longest-Bytes
 Eluvio Core Engineering Challenge
+
 Requirements: 
 Given a large number of binary files, write a program that finds the
 longest strand of bytes that is identical between two or more files
