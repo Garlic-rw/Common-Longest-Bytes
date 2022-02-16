@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 public class EasyCompare{
     byte[] binaryFile;
     String hexString;
+    String fileName;
 
     public EasyCompare(String filePath) throws IOException{
         Path path = Paths.get(filePath);
@@ -48,8 +49,17 @@ public class EasyCompare{
 public static void main(String[] args) throws IOException {
     EasyCompare test1 = new EasyCompare("samples/sample.1");
     EasyCompare test2 = new EasyCompare("samples/sample.2");
+    EasyCompare test3 = new EasyCompare("samples/sample.3");
+    EasyCompare test4 = new EasyCompare("samples/sample.4");
+    EasyCompare test5 = new EasyCompare("samples/sample.5");
+    EasyCompare test6 = new EasyCompare("samples/sample.6");
+    EasyCompare test7 = new EasyCompare("samples/sample.7");
+    EasyCompare test8 = new EasyCompare("samples/sample.8");
+    EasyCompare test9 = new EasyCompare("samples/sample.9");
+    EasyCompare test10 = new EasyCompare("samples/sample.10");
     String testResult = longestCommonString(test1.hexString, test2.hexString);
-    System.out.print(testResult + " with length: "+ testResult.length());
+    System.out.println(" with length: "+ testResult.length());
+    System.out.println(testResult);
 
 }
 }
