@@ -1,7 +1,10 @@
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class EasyCompare{
     byte[] binaryFile;
@@ -99,11 +102,11 @@ public class EasyCompare{
         return new LongestInfo(one.fileName, two.fileName, firstOffset, secondOffset, longest, rt.hashCode());
     }
 
-    public static LongestInfo longestCommonFull(EasyCompare[] input) {
+    public static LongestInfo longestCommonFull(ArrayList<EasyCompare> input) {
         LongestInfo rt = new LongestInfo();
-        for (int i = 0; i < input.length; i++) {
-            for (int j = i + 1; j < input.length; j++){
-                LongestInfo compare = longestCommonStringFast(input[i], input[j]);
+        for (int i = 0; i < input.size(); i++) {
+            for (int j = i + 1; j < input.size(); j++){
+                LongestInfo compare = longestCommonStringFast(input.get(i), input.get(j));
                 rt = rt.update(compare.names.get(0), compare.names.get(1), compare.offset.get(0), compare.offset.get(1), compare.length, compare.hashString);
             }
         }
@@ -132,12 +135,22 @@ public static void main(String[] args) throws IOException {
     test[7] = test8;
     test[8] = test9;
     test[9] = test10;
-    LongestInfo result = longestCommonFull(test);
+    
+    //System.out.println(longestCommonStringFast(test8, test9).length);
+    
+    ArrayList<EasyCompare> allSamples = new ArrayList<>();
+    File folder = Paths.get(System.getProperty("user.dir") + "/samples").toFile();
+    
+    File[] listOfFiles = folder.listFiles();
+    for (File file : listOfFiles) {
+        if (file.isFile()) {
+            allSamples.add(new EasyCompare(System.getProperty("user.dir")+ "/samples/"+file.getName(), file.getName()));
+        } 
+    }
+    LongestInfo result = longestCommonFull(allSamples);
     System.out.println(result.length);
     System.out.println(result.names);
     System.out.println(result.offset);
-    //System.out.println(longestCommonStringFast(test8, test9).length);
-    
-
 }
+
 }

@@ -9,3 +9,5 @@ The program should display:
 - the length of the strand
 - the file names where the largest strand appears
 - the offset where the strand appears in each file
+
+To run this program locally, please put the binary files under the /samples directory. 
